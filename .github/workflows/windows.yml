@@ -24,19 +24,17 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - name: Preparar Flutter 3.44.5 desde su distribución oficial
+      - name: Preparar Flutter 3.44.5 desde su repositorio oficial
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          $manifest = Invoke-RestMethod 'https://storage.googleapis.com/flutter_infra_release/flutter/releases/releases_windows.json'
-          $release = $manifest.releases | Where-Object { $_.version -eq '3.44.5' -and $_.channel -eq 'stable' -and $_.dart_sdk_arch -eq 'x64' } | Select-Object -First 1
-          if (-not $release) { throw 'No se encontró Flutter 3.44.5 x64.' }
-          $archive = Join-Path $env:RUNNER_TEMP 'flutter.zip'
-          Invoke-WebRequest "$($manifest.base_url)/$($release.archive)" -OutFile $archive
-          if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $release.sha256.ToLowerInvariant()) { throw 'Checksum incorrecto del SDK Flutter.' }
-          $sdkDirectory = Join-Path $env:RUNNER_TEMP 'nexodrop-sdk'
-          Expand-Archive $archive -DestinationPath $sdkDirectory
-          Join-Path $sdkDirectory 'flutter\bin' | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          $sdkDirectory = Join-Path $env:RUNNER_TEMP 'nexodrop-flutter'
+          git clone --depth 1 --branch 3.44.5 https://github.com/flutter/flutter.git $sdkDirectory
+          if ($LASTEXITCODE -ne 0) { throw 'No se pudo descargar Flutter 3.44.5.' }
+          $flutterCommand = Join-Path $sdkDirectory 'bin\flutter.bat'
+          & $flutterCommand --version
+          if ($LASTEXITCODE -ne 0) { throw 'No se pudo preparar Flutter.' }
+          Join-Path $sdkDirectory 'bin' | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Compilar y empaquetar
         shell: pwsh
         run: ./scripts/build-windows.ps1
