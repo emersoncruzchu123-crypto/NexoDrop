@@ -1,7 +1,8 @@
 # Adaptación Windows 10 y 11 x64 — 14 de noviembre de 2026
 
-Estado: adaptación de código preparada; pendiente de compilación y prueba en
-Windows. No existe todavía un ejecutable Windows generado. No se instalaron
+Estado: compilación release x64 y empaquetado completados en GitHub Actions
+(Windows Server 2022). Ya existe un paquete con NexoDrop.exe, DLL y recursos.
+Falta la prueba de uso y transferencias en Windows 10/11. No se instalaron
 máquinas virtuales ni herramientas Windows en Fedora.
 
 ## Incluido
@@ -45,7 +46,7 @@ test/windows_compatibility_test.dart` dentro de shared. Comprueba la presentaci�
 con plataforma Windows y el tratamiento de nombres de archivo. No ejecuta
 Win32, no compila C++ y no reemplaza probar las transferencias en Windows.
 
-Pendiente: compilar el código nativo, abrir la app en Windows 10/11, transferir
+Pendiente: abrir la app en Windows 10/11, transferir
 con Android en ambos sentidos, abrir recibidos, comprobar el firewall y validar
 la distribución portable en una máquina sin herramientas de desarrollo.
 
@@ -71,3 +72,12 @@ Revisados canal nativo del historial, icono, manifiesto 10/11, nombres de archiv
 rutas de recursos y paquete portable. La verificación local no compila el código
 C++ ni ejecuta PowerShell; esa validación sigue pendiente del constructor Windows.
 No se subió código ni se inició ninguna compilación en GitHub.
+
+
+## Primera compilación correcta en GitHub
+
+Ejecución: https://github.com/emersoncruzchu123-crypto/NexoDrop/actions/runs/43630729699
+Commit: f6073a1d34e6748a8f2775561ae9a28b576f8630.
+Se obtuvo Flutter desde su etiqueta oficial 3.44.5, después de que el manifiesto
+de descargas devolviera 404. La compilación nativa y el empaquetado terminaron
+correctamente. Esta ejecución no prueba la interfaz ni transferencias reales.

@@ -29,3 +29,8 @@ no registra una instalación si no se pudo construir.
 Ejecutable actual de desarrollo en esta laptop:
 `desktop/build/linux/x64/debug/bundle/nexodrop_desktop`.
 Debe conservarse junto a `lib` y `data`.
+
+
+Instalación verificada el 14 de noviembre de 2026 desde un clon recién preparado:
+compilación release correcta y registro en el menú del usuario. La instalación
+verificada está en Fedora; no se ha realizado esta prueba en RHEL.
