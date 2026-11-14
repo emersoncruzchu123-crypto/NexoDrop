@@ -1,0 +1,20 @@
+NexoDrop para Windows 10 y 11 (64 bits)
+
+1. Extrae todo el ZIP en una carpeta de tu usuario.
+2. Abre NexoDrop.exe. No muevas el ejecutable separado de las DLL y data.
+3. Conecta el celular y la PC a la misma red Wi-Fi o zona Wi-Fi del celular.
+4. Si Windows solicita acceso a la red, permite NexoDrop en tu red privada.
+5. Escanea el QR con NexoDrop en Android y elige Enviar o Recibir.
+
+No necesitas internet durante las transferencias. Los recibidos se guardan en
+Descargas\NexoDrop (o Documentos\NexoDrop si Descargas no esta disponible).
+Borrar el historial no elimina los archivos. Abrir utiliza la aplicacion
+predeterminada de Windows para ese archivo.
+
+Si el firewall ya bloqueo la app, permite NexoDrop en la red privada desde
+Seguridad de Windows. No desactives el firewall. Se usan TCP 45873 y 45874.
+No se cambian las reglas automaticamente ni se requieren permisos de administrador
+para ejecutar NexoDrop en una carpeta del usuario.
+
+Proyecto de codigo abierto GNU GPLv3. Consulta LICENSE y NOTICE.
+Esta entrega no esta firmada digitalmente. Windows puede mostrar una advertencia.
